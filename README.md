@@ -16,9 +16,11 @@ https://thiagodpaulla.github.io/
 ### Understand a little more about how it was created.
 
 <! - ts ->
-  * [Project] (# project)
-  * [Technologies] (# technologies)
-  * [License] (# license)
+
+  * [Project](#project)
+  * [Technologies](#technologies)
+  * [License](#license)
+  
   <! - te ->
 
 # Project
