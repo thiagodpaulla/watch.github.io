@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Relógio JS</title>
+
+    <!-- Ícones do FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+       <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0; 
+      }
+      html, body {
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        background: rgba(8, 7, 8, 0.8);
+        font-family: 'Montserrat', sans-serif;
+        background-size: cover;
+        background-position: center;
+        font-size: 17pt;
+        font-weight: normal;
+        text-align: center;
+        color: #fff;
+      } 
+      .container {
+        margin: 0 auto;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    
+      .relogio { font-size: 5em; }
+      .calendario { font-size: 2em; }
+      footer {
+        margin-top: 3em;
+      }
+      .copy { 
+        color: rgba(43, 6, 6, 0.835);
+        margin-bottom: 1em;
+      }
+      .fa {
+        color: rgb(19, 2, 2);
+        font-size: 1em !important;
+        padding: 20px;
+        width: 20px;
+        text-align: center;
+        text-decoration: none;
+        margin: 5px 2px;
+        border-radius: 50%;
+        border-style: solid;
+        border-width: 2px;
+        border-color: rgb(19, 2, 2);
+      }
+      
+    </style>
+    
+  </head>
+
+  <!-- ID JavaScript -->
+  <body id="bg">
+
+    <!-- 
+      .container
+    Centralizando o Relógio na página
+    -->
+    <div class="container">
+      
+      <!-- inicio: .mensagem -->
+      <div class="mensagem">
+      
+        <!-- Aqui vem o sprite do ícone de acordo com a classe definida -->
+        <div id="iconlogo"></div>
+        
+        <!-- Aqui diremos "bom dia", ou "boa tarde", ou "boa noite" -->
+        <p> <!-- MENSAGEM AQUI --> </p>
+      
+      </div>
+      <!-- fim: .mensagem -->
+
+      <!-- inicio: .relogio -->
+      <div class="relogio">
+
+        <p> <!-- RELÓGIO ATUAL AQUI --> </p>
+
+      </div>
+      <!-- fim: .relogio -->
+
+      <!-- inicio: .calendario -->
+      <div class="calendario">
+
+        <p> <!-- CALENDÁRIO ATUAL AQUI --> </p>
+
+      </div>
+      <!-- fim: .calendario -->
+
+      <!-- início: RODAPÉ -->
+      <footer>
+        <!-- Copyright com Ano Atualizado automaticamente pelo Javascript -->
+        <p class="copy">&copy; Thiagodpaulla <span class="ano">20xx</span></p>
+        
+        <!-- Links para minhas redes sociais -->
+               <a href="https://www.instagram.com/thiagodpaulla/" title="Siga meu instagram" class="fa fa-instagram"></a>
+       
+      </footer>
+      <!-- fim: RODAPÉ -->
+
+    </div>
+    <!-- fim: .container -->
+
+    <script>
+
+      /* CRIANDO NOSSA FUNÇÃO ATUALIZA HORA */
+      function atualizaHora() {
+
+        // Variáveis data e hora
+        var agora = new Date();
+        var horaAtual = agora.getHours();
+        var dia = agora.getDay();
+
+        // Manipuladores do DOM
+        var corpo       = document.getElementById('bg'); // para alterar o tema do site
+        var iconlogo    = document.getElementById('iconlogo'); // para alterar o ícone
+        var mensagem    = document.querySelector('.mensagem>p'); // para mudar a mensagem
+        var relogio     = document.querySelector('.relogio>p'); // para exibir o relógio
+        var calendario  = document.querySelector('.calendario>p'); // para exibir a data atual
+        var anoRodape   = document.querySelector('span.ano'); // para atualizar o ano no rodape
+
+        // Configuração de exibição da data e hora
+        var configLocal = 'pt-BR'; // Configuração do local
+        var configDate  = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+
+        if ( horaAtual < 6 ) {
+          
+          // BOA MADRUGADA
+          mensagem.innerText = 'Boa madrugada.'; // Altera a mensagem
+          iconlogo.className = 'icondia boamadrugada'; // Altera o ícone usando CSS
+          corpo.className = 'madrugada'; // Altera o tema
+
+        } else if ( horaAtual < 12 ) {
+          
+          // BOM DIA
+          mensagem.innerText = 'Bom dia!'; // ...
+          iconlogo.className = 'icondia bomdia'; // ...
+          corpo.className = 'manha'; // ...
+
+        } else if ( horaAtual < 18 ) {
+
+          // BOA TARDE
+          mensagem.innerText = 'Boa tarde.';
+          iconlogo.className = 'icondia boatarde';
+          corpo.className = 'tarde';
+
+        } else {
+          
+          // BOA NOITE
+          mensagem.innerText = 'Boa noite!';
+          iconlogo.className = 'icondia boanoite';
+          corpo.className = 'noite';
+        }
+
+        // Exibe o relógio com hora atual do sistema
+        relogio.innerText = agora.toLocaleTimeString(configLocal);
+
+        // Exibe calendário formatado
+        calendario.innerText = agora.toLocaleDateString(configLocal, configDate);
+
+        // Atualiza ano no rodape do site
+        anoRodape.innerText = agora.getFullYear();
+      }
+
+      // Chama a funcao no momento que a pagina é carregada
+      atualizaHora();
+
+      // Segue atualizando a hora chamando a função a cada segundo
+      setInterval(atualizaHora, 1000);      
+    </script>
+  </body>
+</html>
+
