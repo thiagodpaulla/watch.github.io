@@ -21,7 +21,6 @@ https://thiagodpaulla.github.io/
   * [Technologies](#technologies)
   * [License](#license)
   
-  <!-te->
 
 # Project
 💻 This is the design of a watch that updates the time and greets the user according to the time of day, good morning, good afternoon, good night.
